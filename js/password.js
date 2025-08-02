@@ -23,7 +23,7 @@ window.isPasswordProtected = isPasswordProtected;
  * 验证用户输入的密码是否正确（异步，使用SHA-256哈希）
  */
 // 统一验证函数
-async function verifyPassword(password, passwordType = '123456') {
+async function verifyPassword(password, passwordType = 'password') {
     try {
         const correctHash = window.__ENV__?.[passwordType];
         if (!correctHash) return false;
@@ -32,7 +32,7 @@ async function verifyPassword(password, passwordType = '123456') {
         const isValid = inputHash === correctHash;
 
         if (isValid) {
-            const storageKey = passwordType === '123456'
+            const storageKey = passwordType === 'password'
                 ? PASSWORD_CONFIG.localStorageKey
                 : PASSWORD_CONFIG.adminLocalStorageKey;
 
